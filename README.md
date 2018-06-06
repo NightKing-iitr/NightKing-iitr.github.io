@@ -1,2 +1,2 @@
 # NightKing-iitr.github.io
-# Node app.js
+run node app.js
