@@ -1,14 +1,8 @@
 {
-  "name": "loginapp",
+  "name": "socialnetwork",
   "version": "1.0.0",
-  "description": "Simple authentication system",
+  "description": "",
   "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Brad Traversy",
-  "license": "ISC",
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
@@ -28,5 +22,20 @@
     "passport-http": "*",
     "passport-local": "*",
     "randomstring": "^1.1.5"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "deploy": "gcloud app deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NightKing-iitr/NightKing-iitr.github.io.git"
+  },
+  "author": "Ankit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NightKing-iitr/NightKing-iitr.github.io/issues"
+  },
+  "homepage": "https://github.com/NightKing-iitr/NightKing-iitr.github.io#readme"
 }
