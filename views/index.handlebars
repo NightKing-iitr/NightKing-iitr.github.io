@@ -1,0 +1,61 @@
+<h3 style="text-align:center;">Welcome "{{userId}}"</h3>
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
+<form method="post" action="/">
+  <div class="form-group">
+    <label>Image URL</label>
+    <input type="url" class="form-control" name="imageurl" placeholder="Enter an image url">
+  </div>
+  <div class="form-group">
+    <label>Caption</label>
+    <input type="text" class="form-control" name="caption" placeholder="Type in your caption">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+<div>
+  {{#each items}}
+  <div class="container" style="border: 1px solid black; margin: 10px;">
+    <div>
+      <img src="{{this.imageurl}}" alt="" style="margin:auto; display:block; width: 500px; margin-top: 5px; margin-bottom: 5px; border: 1px solid black;"}>
+    </div>
+    <div style="text-align: center; display: inline-block;">
+      <span>" {{this.postedBy}} "</span>
+      <span>{{this.caption}}</span>
+      <span>" {{this.dateCreated}}"</span>
+    </div>
+    <div class="container">
+        {{#each this.comment}}
+          <div>
+            <div>"{{this.body}} {{this.dateCreated}} {{this.commentedBy}}"</div>
+            <div>
+              <form method="delete" action="/comment/{{this.commentedBy}}/{{this.body}}">
+                <button type="submit" class="btn btn-default">Delete</button>
+              </form>
+            </div>
+          </div>
+        {{/each}}
+      <div>
+        <form method="post" action="/comment/{{this._id}}">
+        <div class="form-row">
+          <div class="col">  
+            <input type="text" class="form-control" name="comment" placeholder="Type in your comment.." required>
+          </div>
+            <div class="col"><button type="submit" class="btn btn-default form-control"> Comment </button></div>
+        </div>
+        </form>
+      </div>
+    </div>
+    <div><button type="submit" class="btn btn-default">Edit</button></div>
+    {{#if deletePost}}
+    <div>
+      <form method="post" action="/delete/{{this._id}}">
+        <button type="submit" class="btn btn-default">Delete</button>
+      </form>
+    </div>
+    {{/if}}
+  </div>
+  {{/each}}
+</div>
