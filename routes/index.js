@@ -6,8 +6,7 @@ var mongoose = require('mongoose');
 
 var User = require('../models/user');
 var Post = require('../models/upload');
-var temp = require('../routes/users.js');
-//console.log(temp.userID);
+
 
 var db = mongoose.connection;
 // Get Homepage
@@ -30,17 +29,7 @@ router.get('/', ensureAuthenticated, function(req, res){
 		}
 	}, function() {
 		resultArray = resultArray.reverse();
-		res.render('index', {items: resultArray, userId: userId} 
-		/*function(resultArray, deletePost){
-			for(var i in resultArray)
-			{
-				if(i.postedBy === userId) {
-					deletePost = true;}
-				else {
-					deletePost = false;
-				}
-			}
-		}*/);
+		res.render('index', {items: resultArray, userId: userId});
 	});
 });
 
