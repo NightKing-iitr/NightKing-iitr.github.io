@@ -10,8 +10,10 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var dbUser = 'SocialNetwork';
+var pass = 'ankit123';
 
-mongoose.connect('mongodb://Admin_SocialNetwork:@ankit123@ds041643.mlab.com:41643/socialnetwork');
+mongoose.connect('mongodb://' + dbUser + ':' + pass + '@ds041643.mlab.com:41643/socialnetwork');
 var db = mongoose.connection;
 
 var routes = require('./routes/index');
@@ -80,6 +82,6 @@ app.use('/', routes);
 app.use('/users', users);
 
 // Set Port
-var server = app.listen(process.env.PORT || 8080, function(){
+var server = app.listen(process.env.PORT || 6000, function(){
   console.log('Server started on port ' + server.address().port);
 });

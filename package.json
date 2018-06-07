@@ -14,7 +14,7 @@
     "express-session": "*",
     "express-validator": "*",
     "handlebars": "^4.0.11",
-    "mongodb": "*",
+    "mongodb": "^3.0.10",
     "mongoose": "*",
     "nodemailer": "^4.6.5",
     "nodemon": "^1.17.5",
