@@ -1,13 +1,13 @@
 {
   "name": "loginapp",
   "version": "1.0.0",
-  "description": "Simple authentication system",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "gcloud app deploy"
   },
-  "author": "Brad Traversy",
+  "author": "Ankit",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "*",

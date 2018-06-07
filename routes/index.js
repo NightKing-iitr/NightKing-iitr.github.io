@@ -21,6 +21,11 @@ router.get('/', ensureAuthenticated, function(req, res){
 			if(userId == doc.postedBy) {
 				doc.deletePost = true;
 			}
+			for(i in doc.comment){
+				if(userId == doc.comment[i].commentedBy){
+					doc.comment[i].deleteComment = true;
+				}
+			}
 			resultArray.push(doc);
 		}
 	}, function() {
@@ -64,7 +69,8 @@ router.post('/', function (req, res) {
 });
 
 router.post('/comment/:id', function(req, res) {
-	var comment = {body: req.body.comment, dateCreated: Date(Date.now()).toLocaleString(), commentedBy: req.user.id};
+	var comment = {body: req.body.comment, dateCreated: Date(Date.now()).toLocaleString(),
+		 commentedBy: req.user.id, imageId: req.params.id, deleteComment: false};
 	console.log(comment);
 	db.collection('posts').updateOne({_id: objectId(req.params.id)},
 	 {$push: {comment: comment}, function(err, doc) {
@@ -87,28 +93,21 @@ router.post('/delete/:id', function(req, res) {
 	res.redirect('/');
 });
 
-router.post('/comment/:id/:commentBody', function(req, res) {
+router.post('/:imageId/:commentedBy/:body/:dateCreated', function(req, res) {
 	console.log('userID: ' + req.user.id);
-	console.log(req.body.comment);
-	console.log(req.params.id);
-	console.log(req.params.commentBody);
+	var comment = {
+		body: req.params.body,
+        dateCreated: req.params.dateCreated,
+		commentedBy: req.params.commentedBy
+	};
+	if(req.user.id == comment.commentedBy) {
+		db.collection('posts').updateOne({_id: objectId(req.params.imageId)},
+			{$pull: {comment: comment}
+   		});
+	}
 	res.redirect('/');
 });
 
-/*router.post('/comment/:id/delete', function(req, res) {
-	var comment = {body: req.body.comment, dateCreated: Date(Date.now()).toLocaleString(), commentedBy: req.user.id};
-	console.log(comment);
-	db.collection('posts').updateOne({_id: objectId(req.params.id)},
-	 {$push: {comment: comment}, function(err, doc) {
-		 if(err) {
-			 console.log('Something went wrong!');
-		 }
-		 else{
-			 console.log(doc);
-		 }
-	 }
-	});
-	res.redirect('/');
-});*/
+
 
 module.exports = router;

@@ -30,11 +30,13 @@
         {{#each this.comment}}
           <div>
             <div>"{{this.body}} {{this.dateCreated}} {{this.commentedBy}}"</div>
-            <div>
-              <form method="delete" action="/comment/{{this.commentedBy}}/{{this.body}}">
-                <button type="submit" class="btn btn-default">Delete</button>
-              </form>
-            </div>
+            {{#if deleteComment}}
+              <div>
+                <form method="post" action="/{{this.imageId}}/{{this.commentedBy}}/{{this.body}}/{{this.dateCreated}}">
+                  <button type="submit" class="btn btn-default">Delete</button>
+                </form>
+              </div>
+            {{/if}}
           </div>
         {{/each}}
       <div>
@@ -48,7 +50,6 @@
         </form>
       </div>
     </div>
-    <div><button type="submit" class="btn btn-default">Edit</button></div>
     {{#if deletePost}}
     <div>
       <form method="post" action="/delete/{{this._id}}">

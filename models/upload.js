@@ -19,6 +19,8 @@ var PostSchema = new mongoose.Schema({
 			body:{type: String},
             dateCreated: {type: Date, default: Date.now},
 			commentedBy:{type: String},
+			imageId: {type: String},
+			deletComment: {type: Boolean}
 		}
 	],
 	deletPost: {type: Boolean}

@@ -55,7 +55,7 @@ module.exports.createUser = function(newUser, callback){
 	        <br/><br/>
 	        Have a pleasant day.`
 	        // Send email
-      		mailer.sendEmail('admin@codeworkrsite.com', newUser.email, 'Please verify your email!', html);
+      		mailer.sendEmail('Admin_ankit@Network', newUser.email, 'Please verify your email!', html);
 	    });
 	});
 }
